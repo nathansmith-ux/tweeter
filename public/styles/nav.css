@@ -7,6 +7,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 /* Right Side Nav */
@@ -16,16 +18,14 @@ nav {
 }
 
 /* Tweeter Text */
-nav, .nav-header {
+.nav-header {
   font-family: 'Bungee';
   font-weight: 400;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
   font-size: 1.25em;
 }
 
 /* Write A Tweet Copy With Bolding*/
-nav, .nav-content {
+.nav-content {
   font-size: 24px;
   font-weight: 300;
   font-family: 'Source Sans 3', sans-serif;
