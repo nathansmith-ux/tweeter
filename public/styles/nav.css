@@ -1,0 +1,44 @@
+/* Whole Nav Bar */
+nav {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Right Side Nav */
+.nav-right-side {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tweeter Text */
+nav, .nav-header {
+  font-family: 'Bungee';
+  font-weight: 400;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  font-size: 1.25em;
+}
+
+/* Write A Tweet Copy With Bolding*/
+nav, .nav-content {
+  font-size: 24px;
+  font-weight: 300;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+nav, .nav-content-highlight {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Source Sans 3';
+}
+
+/* Icon Styling */
+.fa-solid.fa-angles-down {
+  color: #f90606;
+  margin: 0 auto;
+}
