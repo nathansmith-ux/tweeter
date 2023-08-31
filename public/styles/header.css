@@ -1,0 +1,17 @@
+/* Whole Header Section */
+header {
+  height: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #8388db;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  color: #FFFFFF;
+}
+
+/* Removing Space Between Image & Name*/
+.header-name {
+  margin-top: 0;
+}
