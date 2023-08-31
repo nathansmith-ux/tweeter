@@ -7,8 +7,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0 1.5em;
 }
 
 /* Right Side Nav */
@@ -20,25 +19,11 @@ nav {
 /* Tweeter Text */
 .nav-header {
   font-family: 'Bungee';
-  font-weight: 400;
   font-size: 1.25em;
-}
-
-/* Write A Tweet Copy With Bolding*/
-.nav-content {
-  font-size: 24px;
-  font-weight: 300;
-  font-family: 'Source Sans 3', sans-serif;
-}
-
-nav, .nav-content-highlight {
-  font-size: 24px;
-  font-weight: 600;
-  font-family: 'Source Sans 3';
 }
 
 /* Icon Styling */
 .fa-solid.fa-angles-down {
   color: #f90606;
-  margin: 0 auto;
+  text-align: center;
 }
