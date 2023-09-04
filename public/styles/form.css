@@ -1,0 +1,33 @@
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-tweet-title {
+  width: 100%;
+}
+
+.tweet-form {
+  width: 100%;
+}
+
+#tweet-text {
+  background: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 3px solid black;
+  width: 100%;
+}
+.below-tweet {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5em;
+}
+
+button {
+  background-color: #4052A1;
+  color: white;
+  text-transform: uppercase;
+}
