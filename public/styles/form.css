@@ -13,6 +13,9 @@
 }
 
 #tweet-text {
+  padding-top: 0.5em;
+  outline: none;
+  user-select: none;
   background: transparent;
   border-top: none;
   border-right: none;
