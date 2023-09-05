@@ -79,4 +79,20 @@ $(document).ready(function() {
   };
 
   renderTweets(data);
+
+  $('.tweet-form').on("submit", function(event) {
+    event.preventDefault();
+
+    let serializedData = $(this).serialize();
+
+    $.ajax({
+      type: "POST",
+      url: "/tweets",
+      data: serializedData,
+      success: () => console.log("You have successfuly sent a tweet to the server", serializedData),
+      error: () => console.log("Oh no the server didn't receive the data correctly!")
+    })
+
+  })
+
 })
