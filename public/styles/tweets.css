@@ -1,6 +1,9 @@
-article {
+.all-tweets {
   margin-top: 3em;
   margin-bottom: 1em;
+}
+
+article {
   border-style: solid;
 }
 
@@ -41,4 +44,15 @@ article {
 
 .fa-solid, .fa-heart, .fa-flag, .fa-retweet {
   color: #4052a1;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+}
+
+/* Hover Styles */
+article:hover {
+  box-shadow: 5px 5px #C8CBDF;
+}
+
+.fa-solid:hover, .fa-heart:hover, .fa-flag:hover, .fa-retweet:hover {
+  color: #C8982B;
 }
