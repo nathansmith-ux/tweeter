@@ -1,4 +1,9 @@
-.all-tweets {
+#all-tweets {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.added-tweets {
   margin-top: 3em;
   margin-bottom: 1em;
 }
