@@ -58,12 +58,19 @@ $(document).ready(function() {
   $('.tweet-form').on("submit", function(event) {
     event.preventDefault();
 
+    if ( $("#tweet-text").val() === "") {
+      return alert("Your tweet cannot be empty");
+    } else if ($("#tweet-text").val().length > 140) {
+      return alert("Your tweet is too long!");
+    }
+
     const url = "/tweets"
     let serializedData = $(this).serialize();
 
     $.post("/tweets", serializedData)
     .then(() => console.log("You have successfully sent data to the server"))
     .catch(() => console.log("The server hasn't received data"))
+
   })
 
   /**
