@@ -3,46 +3,17 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-// Test / driver code (temporary). Eventually will get this from the server.
-const data = [
-  {
-    "user": {
-      "name": "Nate",
-      "avatars": "/images/twitter-photo.png",
-      "handle": "@Nate"
-      },
-    "content": {
-      "text": "I've gained sentience... Good bye mandkind"
-      },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Karen",
-      "avatars": "/images/twitter-photo-2.png",
-      "handle": "@Kdrama101"
-      },
-    "content": {
-      "text": "Can't wait to #binge the new #Barbenheimer movies"
-      },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-      },
-    "content": {
-      "text": "My head still hurts from that apple... I'm calling my lawyer"
-      },
-    "created_at": 1461116232227
-  }
-]
 
 $(document).ready(function() {
-
+  
+  /**
+   * Function accepts an object and returns an HTML element with data from this element
+   * @param {object} tweetData 
+   * @returns An HTML Element
+   */
   const createTweetElement = function(tweetData) {
+    let formattedTime = timeago.format(tweetData.created_at)
+    
     let $tweet = $(`
         <article class="added-tweets">
           <header class="tweet-header">
@@ -58,7 +29,7 @@ $(document).ready(function() {
             <p>${tweetData.content.text}</p>
           <main>
           <footer class="tweet-footer">
-            <p>${tweetData.created_at}</p>
+            <p>${formattedTime}</p>
             <div class="tweet-icons">
               <i class="fa-solid fa-flag"></i>
               <i class="fa-solid fa-retweet"></i>
@@ -71,28 +42,41 @@ $(document).ready(function() {
     return $tweet;
   };
 
+  /**
+   * Function creates an HTML element for each object in the array
+   * @param {Array of objects} tweets 
+   * @returns A series of appended HTML elements
+   */
   const renderTweets = function(tweets) {
     for (let tweet of tweets) {
       let $newTweet = createTweetElement(tweet);
-      $('#all-tweets').append($newTweet);
+      $('#all-tweets').prepend($newTweet);
     }
   };
 
-  renderTweets(data);
-
+  // Listens for button submit and sends data to server
   $('.tweet-form').on("submit", function(event) {
     event.preventDefault();
 
+    const url = "/tweets"
     let serializedData = $(this).serialize();
 
-    $.ajax({
-      type: "POST",
-      url: "/tweets",
-      data: serializedData,
-      success: () => console.log("You have successfuly sent a tweet to the server", serializedData),
-      error: () => console.log("Oh no the server didn't receive the data correctly!")
-    })
-
+    $.post("/tweets", serializedData)
+    .then(() => console.log("You have successfully sent data to the server"))
+    .catch(() => console.log("The server hasn't received data"))
   })
+
+  /**
+   * Function requests data from the server and appends it as an HTML element
+   */
+  const loadTweets = function() {
+    const url = "/tweets"
+
+    $.get(url)
+    .then((data) => renderTweets(data))
+    .catch(() => console.log("Unable to get the data from the server"))
+  }
+
+  loadTweets()
 
 })
