@@ -71,11 +71,51 @@ $(document).ready(function() {
   $('.tweet-form').on("submit", function(event) {
     event.preventDefault();
 
-    if ( $("#tweet-text").val() === "") {
-      return alert("Your tweet cannot be empty");
-    } else if ($("#tweet-text").val().length > 140) {
-      return alert("Your tweet is too long!");
+    /**
+     * Function returns an error message based on user input
+     * @param {string} message 
+     * @returns An HTML element with the error message
+     */
+    let errorMessage = function(message) {
+      $('#all-errors').empty();
+
+      let $newError = $(`
+      <div class="error-message">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+          ${message}
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      `)
+
+      // Styles for error message
+      $newError.css({
+        "border": "3px solid red",
+        "color": "red",
+        "margin-top": "1em",
+        "margin-bottom": "1em",
+        "padding": "1em"
+      })
+
+      // Styles for error icon
+      $newError.find(".fa-solid.fa-triangle-exclamation").css({
+        "color": "red"
+      })
+
+      return $('#all-errors').append($newError)
     }
+
+    if ( $("#tweet-text").val() === "") {
+      return $('#all-errors').slideDown(1000, function() {
+        errorMessage("You cannot send an empty tweet").show()
+      })
+
+    } else if ($("#tweet-text").val().length > 140) {
+      return $('#all-errors').slideDown(1000, function() {
+        errorMessage("Your tweet must be less than 141 characters").show()
+      })
+    }
+
+    $('#all-errors').slideUp("slow");
 
     const url = "/tweets"
     let serializedData = $(this).serialize();
