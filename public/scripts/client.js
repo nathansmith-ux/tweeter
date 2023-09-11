@@ -48,6 +48,8 @@ $(document).ready(function() {
    * @returns A series of appended HTML elements
    */
   const renderTweets = function(tweets) {
+    $('#all-tweets').empty();
+
     for (let tweet of tweets) {
       let $newTweet = createTweetElement(tweet);
       $('#all-tweets').prepend($newTweet);
@@ -68,20 +70,20 @@ $(document).ready(function() {
     let serializedData = $(this).serialize();
 
     $.post("/tweets", serializedData)
-    .then(() => console.log("You have successfully sent data to the server"))
-    .catch(() => console.log("The server hasn't received data"))
+    .done(loadTweets)
+    .fail((error) => console.log("The data didn't go through", error))
 
   })
 
   /**
-   * Function requests data from the server and appends it as an HTML element
+   * Function requests data from the server and prepends it as an HTML element
    */
   const loadTweets = function() {
     const url = "/tweets"
 
     $.get(url)
-    .then((data) => renderTweets(data))
-    .catch(() => console.log("Unable to get the data from the server"))
+    .done((allTweets) => renderTweets(allTweets))
+    .fail((error) => console.log("Unable to get the data from the server", error))
   }
 
   loadTweets()
