@@ -13,6 +13,17 @@ $(document).ready(function() {
    */
   const createTweetElement = function(tweetData) {
     let formattedTime = timeago.format(tweetData.created_at)
+
+    /**
+     * Function prevents cross site scripting
+     * @param {user input string} str 
+     * @returns A safe HTML paragraph element
+     */
+    const escape = function (str) {
+      let div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML
+    }
     
     let $tweet = $(`
         <article class="added-tweets">
@@ -26,7 +37,7 @@ $(document).ready(function() {
             <p>${tweetData.user.handle}</p>
           </header>
           <main class="tweet-content">
-            <p>${tweetData.content.text}</p>
+            <p>${escape(tweetData.content.text)}</p>
           <main>
           <footer class="tweet-footer">
             <p>${formattedTime}</p>
