@@ -35,6 +35,7 @@ article {
   display: flex;
   justify-content: space-between;
   padding: 0em 1em;
+  margin-top: 10px;
 }
 
 .tweet-footer {
