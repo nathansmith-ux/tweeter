@@ -42,6 +42,9 @@
     <!-- Character Counting JS -->
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
 
+    <!-- To Prevent Default Zoom Behaviour On Mobile -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
   </head>
 
   <body>
@@ -67,14 +70,6 @@
   
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <div>
-        <h1>Send A Tweet</h1>
-        <p>What's on your mind?</p>
-      </div>
-      <div>
-        <p>"Exploring the vast universe of #WebDev is like navigating a digital cosmos 🌌. Every line of code is a star, every framework an orbiting planet. As developers, we're the astronauts charting new galaxies of possibility. Keep coding, keep discovering! 💻✨ #CodeJourney"</p>
-      </div>
-
       <section class="new-tweet">
         <h2 class="new-tweet-title">Compose Tweet</h2>
         <form action="/tweets/" method="POST" class="tweet-form">
