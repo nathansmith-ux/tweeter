@@ -16,4 +16,6 @@ The front end was built using HTML, CSS, JS, jQuery and AJAX while the backend w
 
 ## Images Of App
 !["App interface on a desktop"](https://github.com/nathansmith-ux/tweeter/blob/master/docs/desktop-app.png)
+- An image of the app interface from a desktop
 !["App interface on a mobile phone"](https://github.com/nathansmith-ux/tweeter/blob/master/docs/mobile-app.png)
+- An image of the app interface from a tablet/mobile phone
