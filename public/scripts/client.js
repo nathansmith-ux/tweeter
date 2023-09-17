@@ -8,22 +8,22 @@ $(document).ready(function() {
   
   /**
    * Function accepts an object and returns an HTML element with data from this element
-   * @param {object} tweetData 
+   * @param {object} tweetData
    * @returns An HTML Element
    */
   const createTweetElement = function(tweetData) {
-    let formattedTime = timeago.format(tweetData.created_at)
+    let formattedTime = timeago.format(tweetData.created_at);
 
     /**
      * Function prevents cross site scripting
-     * @param {user input string} str 
+     * @param {user input string} str
      * @returns A safe HTML paragraph element
      */
-    const escape = function (str) {
+    const escape = function(str) {
       let div = document.createElement("div");
       div.appendChild(document.createTextNode(str));
-      return div.innerHTML
-    }
+      return div.innerHTML;
+    };
     
     let $tweet = $(`
         <article class="added-tweets">
@@ -48,14 +48,14 @@ $(document).ready(function() {
             </div>
           </footer>
         </article>
-    `)
+    `);
 
     return $tweet;
   };
 
   /**
    * Function creates an HTML element for each object in the array
-   * @param {Array of objects} tweets 
+   * @param {Array of objects} tweets
    * @returns A series of appended HTML elements
    */
   const renderTweets = function(tweets) {
@@ -73,7 +73,7 @@ $(document).ready(function() {
 
     /**
      * Function returns an error message based on user input
-     * @param {string} message 
+     * @param {string} message
      * @returns An HTML element with the error message
      */
     let errorMessage = function(message) {
@@ -85,7 +85,7 @@ $(document).ready(function() {
           ${message}
         <i class="fa-solid fa-triangle-exclamation"></i>
       </div>
-      `)
+      `);
 
       // Styles for error message
       $newError.css({
@@ -94,49 +94,49 @@ $(document).ready(function() {
         "margin-top": "1em",
         "margin-bottom": "1em",
         "padding": "1em"
-      })
+      });
 
       // Styles for error icon
       $newError.find(".fa-solid.fa-triangle-exclamation").css({
         "color": "red"
-      })
+      });
 
-      return $('#all-errors').append($newError)
-    }
+      return $('#all-errors').append($newError);
+    };
 
-    if ( $("#tweet-text").val() === "") {
+    if ($("#tweet-text").val() === "") {
       return $('#all-errors').slideDown(1000, function() {
-        errorMessage("You cannot send an empty tweet").show()
-      })
+        errorMessage("You cannot send an empty tweet").show();
+      });
 
-    } else if ($("#tweet-text").val().length > 140) {
+    } else if ($("#tweet-text").val().length >= 140) {
       return $('#all-errors').slideDown(1000, function() {
-        errorMessage("Your tweet must be less than 141 characters").show()
-      })
+        errorMessage("Your tweet must be less than 140 characters").show();
+      });
     }
 
     $('#all-errors').slideUp("slow");
 
-    const url = "/tweets"
+    const url = "/tweets";
     let serializedData = $(this).serialize();
 
-    $.post("/tweets", serializedData)
-    .done(loadTweets)
-    .fail((error) => console.log("The data didn't go through", error))
+    $.post(url, serializedData)
+      .done(loadTweets)
+      .fail((error) => console.log("The data didn't go through", error));
 
-  })
+  });
 
   /**
    * Function requests data from the server and prepends it as an HTML element
    */
   const loadTweets = function() {
-    const url = "/tweets"
+    const url = "/tweets";
 
     $.get(url)
-    .done((allTweets) => renderTweets(allTweets))
-    .fail((error) => console.log("Unable to get the data from the server", error))
-  }
+      .done((allTweets) => renderTweets(allTweets))
+      .fail((error) => console.log("Unable to get the data from the server", error));
+  };
 
-  loadTweets()
+  loadTweets();
 
-})
+});
