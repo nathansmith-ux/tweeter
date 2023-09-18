@@ -109,9 +109,9 @@ $(document).ready(function() {
         errorMessage("You cannot send an empty tweet").show();
       });
 
-    } else if ($("#tweet-text").val().length >= 140) {
+    } else if ($("#tweet-text").val().length > 140) {
       return $('#all-errors').slideDown(1000, function() {
-        errorMessage("Your tweet must be less than 140 characters").show();
+        errorMessage("Your tweet must be less than 141 characters").show();
       });
     }
 
@@ -120,8 +120,19 @@ $(document).ready(function() {
     const url = "/tweets";
     let serializedData = $(this).serialize();
 
+    /**
+     * Function resets the tweetForm
+     */
+    function resetTweetForm() {
+      $("#tweet-text").val('');
+      $("#tweet-text").next(".below-tweet").find("output").text(140) 
+    }    
+
     $.post(url, serializedData)
-      .done(loadTweets)
+      .done(() => {
+        loadTweets();
+        resetTweetForm();
+      })
       .fail((error) => console.log("The data didn't go through", error));
 
   });
