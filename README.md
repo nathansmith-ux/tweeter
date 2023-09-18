@@ -13,6 +13,9 @@ The front end was built using HTML, CSS, JS, jQuery and AJAX while the backend w
 
 - Express
 - Node 5.10.x or above
+- MD5 2.1.0
+- Body Parser 1.15.2
+- Chance 1.0.2
 
 ## Images Of App
 !["App interface on a desktop"](https://github.com/nathansmith-ux/tweeter/blob/master/docs/desktop-app.png)
