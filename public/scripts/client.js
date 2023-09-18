@@ -104,7 +104,7 @@ $(document).ready(function() {
       return $('#all-errors').append($newError);
     };
 
-    if ($("#tweet-text").val() === "") {
+    if ($("#tweet-text").val().trim() === "") {
       return $('#all-errors').slideDown(1000, function() {
         errorMessage("You cannot send an empty tweet").show();
       });
